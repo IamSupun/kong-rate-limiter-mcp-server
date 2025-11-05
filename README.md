@@ -1,346 +1,168 @@
 # Kong Rate Limiter MCP Server
 
-[![Build Status](https://github.com/shibbirmcc/kong-ratelimiter-mcp-server/workflows/CI/badge.svg)](https://github.com/shibbirmcc/kong-ratelimiter-mcp-server/actions)
-[![Coverage](https://codecov.io/gh/shibbirmcc/kong-ratelimiter-mcp-server/branch/master/graph/badge.svg)](https://codecov.io/gh/shibbirmcc/kong-ratelimiter-mcp-server)
-[![Release](https://img.shields.io/github/v/release/shibbirmcc/kong-ratelimiter-mcp-server)](https://github.com/shibbirmcc/kong-ratelimiter-mcp-server/releases)
-[![Docker](https://img.shields.io/docker/pulls/shibbirmcc/kong-ratelimiter-mcp-server)](https://hub.docker.com/r/shibbirmcc/kong-ratelimiter-mcp-server)
+[![Build Status](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/workflows/CI/badge.svg)](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/actions)
+[![Coverage](https://codecov.io/gh/ChathuRaaksha/kong-rate-limiter-mcp-server/branch/master/graph/badge.svg)](https://codecov.io/gh/ChathuRaaksha/kong-rate-limiter-mcp-server)
+[![Release](https://img.shields.io/github/v/release/ChathuRaaksha/kong-rate-limiter-mcp-server)](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/releases)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-A Model Context Protocol (MCP) server for Kong configuration management, built with FastMCP and Server-Sent Events (SSE) transport. This server provides tools for managing Kong services, routes, and other configuration elements through a standardized MCP interface.
+A **Model Context Protocol (MCP) server** that enables AI agents and LLMs to interact with Kong API Gateway through natural language. This server bridges the gap between conversational AI and Kong's powerful API management capabilities, allowing for intelligent automation of API gateway configuration and management.
 
-## Features
+## 🎯 Why This Project?
 
-- **FastMCP Integration**: Built using the FastMCP SDK for efficient MCP server implementation
-- **SSE Transport**: Uses Server-Sent Events for real-time communication with MCP clients
-- **Modular Architecture**: Tools are organized in separate modules for easy extension
-- **JSON Configuration**: External JSON configuration for tool management
-- **Comprehensive Testing**: Unit and integration tests with high coverage
-- **Kong HTTP Client**: HTTP client for Kong Admin API communication with authentication support
-- **Extensible Design**: Easy to add new Kong configuration tools
+### The Problem
+Modern API gateways like Kong are incredibly powerful but require:
+- Deep knowledge of Kong's Admin API
+- Manual configuration through REST API calls or CLI commands
+- Complex JSON payloads for service, route, and plugin management
+- Time-consuming troubleshooting and debugging
+- Repetitive tasks that could be automated
 
-## Quick Start
+### The Solution
+This MCP server transforms Kong management by:
+- **Natural Language Interface**: Configure Kong using plain English through AI agents like Claude
+- **Intelligent Automation**: Let AI assistants handle complex Kong configurations automatically
+- **Reduced Learning Curve**: No need to memorize Admin API endpoints or JSON schemas
+- **Faster Development**: Prototype and deploy API configurations in seconds, not hours
+- **Error Prevention**: AI-assisted validation and best practices application
+- **Documentation as Code**: Conversational history serves as living documentation
 
-### Option 1: Virtual Environment Script (Recommended)
-```bash
-./venv.sh                                    # Setup and activate
-python -m kong_mcp_server.server            # Run server
-pytest --cov=kong_mcp_server                # Run tests with coverage
-./venv.sh deactivate                         # Cleanup
+### Real-World Use Cases
+
+#### 1. **Rapid API Prototyping**
+```
+User: "Create a new service for my user API at https://api.example.com and add a route for /users"
+AI Agent: Creates service, configures route, and confirms setup
 ```
 
-### Option 2: Server Management Script
-```bash
-./scripts/server.sh start                    # Start server
-./scripts/server.sh status                   # Check status
-./scripts/server.sh health                   # Health check
-./scripts/server.sh logs                     # View logs
-./scripts/server.sh stop                     # Stop server
+#### 2. **Intelligent Rate Limiting**
+```
+User: "Add rate limiting to my payment API - 100 requests per minute per user"
+AI Agent: Configures rate limiting plugin with appropriate scope and limits
 ```
 
-### Option 3: Manual Setup
+#### 3. **Security Automation**
+```
+User: "Set up JWT authentication for all routes in the admin service"
+AI Agent: Applies JWT plugin to service with recommended configuration
+```
+
+#### 4. **Troubleshooting**
+```
+User: "Why is my API returning 502 errors?"
+AI Agent: Checks service health, route configuration, and plugin settings
+```
+
+#### 5. **Bulk Operations**
+```
+User: "Add CORS headers to all my public APIs"
+AI Agent: Identifies public services and applies CORS plugin configuration
+```
+
+## 🌟 Key Features
+
+### AI-Powered Kong Management
+- **Conversational Interface**: Manage Kong through natural language conversations
+- **Context-Aware Operations**: AI understands Kong concepts and relationships
+- **Smart Defaults**: Intelligent suggestions based on best practices
+- **Error Handling**: Helpful explanations and automatic recovery suggestions
+
+### Comprehensive Kong Integration
+- **Services Management**: Create, read, update, and delete Kong services
+- **Routes Configuration**: Full CRUD operations for Kong routes
+- **Plugin Administration**: Manage all Kong plugins with scope support
+- **Rate Limiting**: Specialized tools for rate limiting configuration
+- **Authentication Support**: Both Kong CE and EE authentication methods
+
+### Developer Experience
+- **FastMCP Framework**: Built on modern, efficient MCP SDK
+- **SSE Transport**: Real-time Server-Sent Events communication
+- **Docker Support**: Easy deployment with Docker and Docker Compose
+- **Comprehensive Testing**: High test coverage with unit and integration tests
+- **Extensive Documentation**: Clear guides and examples
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10 or higher
+- Kong Gateway (Community or Enterprise Edition)
+- Docker (optional, for containerized deployment)
+- An MCP client (e.g., Claude Desktop, Cline for VS Code)
+
+### Installation
+
+#### Option 1: Virtual Environment (Recommended for Development)
 ```bash
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Clone the repository
+git clone https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server.git
+cd kong-rate-limiter-mcp-server
 
-# Install dependencies
-pip install -e .[dev]
+# Setup and activate virtual environment
+./venv.sh
 
-# Run server
+# Run the server
 python -m kong_mcp_server.server
 
-# Run tests
-pytest
-
-# Check coverage
+# In another terminal, run tests
 pytest --cov=kong_mcp_server
 ```
 
-### Virtual Environment Script Commands
-
+#### Option 2: Docker (Recommended for Production)
 ```bash
-./venv.sh           # Activate venv and install dependencies (default)
-./venv.sh activate  # Same as above
-./venv.sh deactivate # Deactivate current virtual environment
-./venv.sh clean     # Remove virtual environment directory
-```
+# Pull from Docker Hub
+docker pull shibbirmcc/kong-ratelimiter-mcp-server
 
-## Architecture
-
-The MCP server follows a modular architecture:
-
-```
-src/kong_mcp_server/
-├── __init__.py              # Package initialization
-├── server.py                # Main MCP server implementation
-├── tools_config.json        # Tool configuration (external JSON)
-└── tools/                   # Tool modules
-    ├── __init__.py
-    ├── basic.py             # Basic tools (hello_world)
-    ├── kong_services.py     # Kong services management
-    └── kong_routes.py       # Kong routes management
-```
-
-### Tool Configuration
-
-Tools are configured in `tools_config.json`:
-
-```json
-{
-  "tools": {
-    "hello_world": {
-      "name": "hello_world",
-      "description": "Simple Hello World tool for testing",
-      "module": "kong_mcp_server.tools.basic",
-      "function": "hello_world",
-      "enabled": true
-    },
-    "kong_get_services": {
-      "name": "kong_get_services",
-      "description": "Retrieve Kong services configuration",
-      "module": "kong_mcp_server.tools.kong_services",
-      "function": "get_services",
-      "enabled": false
-    }
-  }
-}
-```
-
-## Configuration
-
-### Environment Variables
-```bash
-# Server Configuration
-export FASTMCP_PORT=8080                     # Server port (default: 8080)
-export HOST=127.0.0.1                       # Server host (default: 127.0.0.1)
-
-# Kong Configuration
-export KONG_ADMIN_URL=http://localhost:8001  # Kong Admin API URL
-export KONG_USERNAME=admin                   # Kong CE username
-export KONG_PASSWORD=secret                  # Kong CE password
-export KONG_API_TOKEN=token                  # Kong EE API token (alternative)
-export KONG_TIMEOUT=30.0                     # Request timeout (seconds)
-export KONG_VERIFY_SSL=true                  # SSL verification
-```
-
-### Kong Authentication
-
-**Community Edition (Username/Password):**
-```bash
-export KONG_USERNAME=admin
-export KONG_PASSWORD=your-password
-```
-
-**Enterprise Edition (API Token):**
-```bash
-export KONG_API_TOKEN=your-api-token
-```
-
-### Port Configuration Examples
-```bash
-# Use default port 8080 (no environment variable needed)
-python -m kong_mcp_server.server
-./scripts/server.sh start
-
-# Change to custom port
-FASTMCP_PORT=9000 python -m kong_mcp_server.server
-FASTMCP_PORT=9000 ./scripts/server.sh start
-
-# Docker with custom port
-docker run -p 9000:9000 -e FASTMCP_PORT=9000 kong-mcp-server
-```
-
-### Available Tools
-
-- **hello_world**: Basic test tool that returns a greeting message
-- **Kong Services**: CRUD operations for Kong services via HTTP API
-  - `kong_get_services`: Retrieve services
-  - `kong_create_service`: Create new service
-  - `kong_update_service`: Update existing service
-  - `kong_delete_service`: Delete service
-- **Kong Routes**: CRUD operations for Kong routes via HTTP API
-  - `kong_get_routes`: Retrieve routes
-  - `kong_create_route`: Create new route
-  - `kong_update_route`: Update existing route
-  - `kong_delete_route`: Delete route
-- **Kong Plugins**: Management and retrieval of Kong plugins with filtering and scoping support  
-  - `kong_get_plugins`: Retrieve all plugins with optional filtering and pagination  
-  - `kong_get_plugins_by_service`: Retrieve plugins scoped to a specific service  
-  - `kong_get_plugins_by_route`: Retrieve plugins scoped to a specific route  
-  - `kong_get_plugins_by_consumer`: Retrieve plugins scoped to a specific consumer
-- **Kong Rate Limiting**: CRUD operations for Kong basic rate limiting plugins (Community Edition)
-  - `kong_create_rate_limiting_plugin`: Create basic rate limiting plugin with support for all scopes (global, service, route, consumer) and time-based limits
-  - `kong_get_rate_limiting_plugins`: Retrieve basic rate limiting plugins with filtering by scope, tags, and pagination support
-  - `kong_update_rate_limiting_plugin`: Update basic rate limiting plugin configuration including limits, policies, and Redis settings
-  - `kong_delete_rate_limiting_plugin`: Delete basic rate limiting plugin by plugin ID
-- **Kong Plugin Management**: General plugin management operations
-  - `kong_get_plugin`: Get specific plugin by ID with full configuration details
-  - `kong_get_plugins`: Get all plugins with optional filtering by name, scope, tags, and pagination support
-
-### Adding New Tools
-
-1. Create a new module in `src/kong_mcp_server/tools/`
-2. Implement your tool functions
-3. Add tool configuration to `tools_config.json`
-4. Set `"enabled": true` to activate the tool
-
-## Testing
-
-The project includes comprehensive test coverage:
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=kong_mcp_server --cov-report=term-missing
-
-# Generate text coverage report
-pytest --cov=kong_mcp_server --cov-report=xml
-coverage report > coverage.txt
-
-# Integration testing (requires testcontainers)
-RUN_LIVE_TESTS=true pytest tests/test_kong_integration.py
-```
-
-## Development
-
-### Code Quality
-
-```bash
-# Linting
-flake8 src/ tests/
-
-# Type checking
-mypy src/
-
-# Formatting
-black src/ tests/
-isort src/ tests/
-```
-
-## Docker Deployment
-
-### Running from Docker Hub
-
-The Kong Rate Limiter MCP Server is available on Docker Hub as `shibbirmcc/kong-ratelimiter-mcp-server`.
-
-#### Quick Start with Docker Hub
-
-```bash
-# Pull and run the latest image with host network
-docker run --network host shibbirmcc/kong-ratelimiter-mcp-server
-
-# Run with a specific version
-docker run --network host shibbirmcc/kong-ratelimiter-mcp-server:latest
-
-# Run in detached mode with a custom name
-docker run -d --network host --name kong-mcp shibbirmcc/kong-ratelimiter-mcp-server
-```
-
-#### Running with Environment Variables
-
-Configure the server using environment variables to connect to your Kong instance:
-
-```bash
-# Basic configuration (Kong without authentication)
-docker run -d --network host \
-  --name kong-mcp \
-  -e KONG_ADMIN_URL=http://localhost:8001 \
-  shibbirmcc/kong-ratelimiter-mcp-server
-
-# Custom port configuration
-docker run -d --network host \
-  --name kong-mcp \
-  -e HOST=127.0.0.1 \
-  -e FASTMCP_PORT=8080 \
-  -e KONG_ADMIN_URL=http://localhost:8001 \
-  shibbirmcc/kong-ratelimiter-mcp-server
-
-# Full configuration with all options
-docker run -d --network host \
-  --name kong-mcp \
-  -e HOST=0.0.0.0 \
-  -e FASTMCP_PORT=8080 \
-  -e KONG_ADMIN_URL=http://localhost:8001 \
-  -e KONG_TIMEOUT=45.0 \
-  -e KONG_VERIFY_SSL=false \
-  shibbirmcc/kong-ratelimiter-mcp-server
-
-# Using a different port
-docker run -d --network host \
-  --name kong-mcp \
-  -e FASTMCP_PORT=9000 \
+# Run with host network
+docker run --network host \
   -e KONG_ADMIN_URL=http://localhost:8001 \
   shibbirmcc/kong-ratelimiter-mcp-server
 ```
 
-#### Kong Enterprise Edition with API Token
-
-If you're using Kong Enterprise Edition with API token authentication:
-
-```bash
-docker run -d --network host \
-  --name kong-mcp \
-  -e KONG_ADMIN_URL=http://localhost:8001 \
-  -e KONG_API_TOKEN=your-api-token \
-  shibbirmcc/kong-ratelimiter-mcp-server
-```
-
-### Building the Docker Image Locally
-
-If you want to build the image locally instead of using Docker Hub:
-
-```bash
-# Build the image
-docker build -t kong-mcp-server .
-
-# Or build with a specific tag
-docker build -t kong-mcp-server:0.1.2 .
-```
-
-### Running Locally Built Image
-
-```bash
-# Run the container with host network
-docker run --network host kong-mcp-server
-
-# Run in detached mode
-docker run -d --network host --name kong-mcp kong-mcp-server
-
-# Run with environment variables
-docker run --network host -e KONG_ADMIN_URL=http://localhost:8001 kong-mcp-server
-```
-
-### Docker Compose
-
-Create a `docker-compose.yml` file:
-
+#### Option 3: Docker Compose
 ```yaml
 version: '3.8'
 services:
   kong-mcp-server:
-    build: .
+    image: shibbirmcc/kong-ratelimiter-mcp-server
     ports:
       - "8080:8080"
     environment:
       - KONG_ADMIN_URL=http://kong:8001
+      - KONG_TIMEOUT=30.0
     restart: unless-stopped
 ```
 
-Run with Docker Compose:
+## 🔧 Configuration
 
+### Environment Variables
+
+#### Kong Configuration
 ```bash
-docker-compose up -d
+# Kong Admin API URL (required)
+export KONG_ADMIN_URL=http://localhost:8001
+
+# Kong Community Edition Authentication
+export KONG_USERNAME=admin
+export KONG_PASSWORD=your-password
+
+# Kong Enterprise Edition Authentication (alternative)
+export KONG_API_TOKEN=your-api-token
+
+# Additional Options
+export KONG_TIMEOUT=30.0              # Request timeout (seconds)
+export KONG_VERIFY_SSL=true           # SSL verification
 ```
 
-## LLM Agent Configuration
+#### Server Configuration
+```bash
+export FASTMCP_PORT=8080              # Server port (default: 8080)
+export HOST=127.0.0.1                 # Server host (default: 127.0.0.1)
+```
 
-### Claude Code Integration
+### MCP Client Configuration
 
-To use this MCP server with Claude Code, add the server configuration to your MCP client:
-
+#### Claude Desktop
+Add to your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
@@ -354,261 +176,258 @@ To use this MCP server with Claude Code, add the server configuration to your MC
 }
 ```
 
-### Server-Sent Events (SSE) Endpoint
-
-The server exposes an SSE endpoint for real-time communication:
-
-- **Endpoint**: `http://localhost:8080/sse/`
-- **Protocol**: Server-Sent Events (SSE)
-- **Content-Type**: `text/event-stream`
-
-### Configuration with Other MCP Clients
-
-For other MCP clients, configure the connection as follows:
-
-```yaml
-# Example configuration
-server:
-  name: "Kong Rate Limiter MCP Server"
-  transport: "sse"
-  url: "http://localhost:8080/sse/"
-  
-tools:
-  - hello_world
-  - kong_get_services
-  - kong_create_service
-  # ... other tools as enabled in tools_config.json
+#### Cline (VS Code)
+Add to your Cline MCP settings:
+```json
+{
+  "kong-rate-limiter": {
+    "command": "http://localhost:8080/sse",
+    "args": [],
+    "env": {}
+  }
+}
 ```
 
-## Kong Authentication Setup
+## 📚 Available Tools
 
-The server supports two authentication methods for Kong Admin API:
+### Service Management
+- `kong_get_services` - Retrieve Kong services with filtering
+- `kong_create_service` - Create new Kong service
+- `kong_update_service` - Update existing service
+- `kong_delete_service` - Delete service
 
-### Kong Community Edition (Username/Password)
+### Route Management
+- `kong_get_routes` - Retrieve Kong routes with filtering
+- `kong_create_route` - Create new route
+- `kong_update_route` - Update existing route
+- `kong_delete_route` - Delete route
 
+### Plugin Management
+- `kong_get_plugins` - Get all plugins with filtering and pagination
+- `kong_get_plugin` - Get specific plugin by ID
+- `kong_get_plugins_by_service` - Get plugins scoped to service
+- `kong_get_plugins_by_route` - Get plugins scoped to route
+- `kong_get_plugins_by_consumer` - Get plugins scoped to consumer
+
+### Rate Limiting
+- `kong_create_rate_limiting_plugin` - Create rate limiting with all scopes (global, service, route, consumer)
+- `kong_get_rate_limiting_plugins` - Retrieve rate limiting plugins with filtering
+- `kong_update_rate_limiting_plugin` - Update rate limiting configuration
+- `kong_delete_rate_limiting_plugin` - Delete rate limiting plugin
+
+### Testing
+- `hello_world` - Basic test tool for connectivity verification
+
+## 🏗️ Architecture
+
+```
+src/kong_mcp_server/
+├── server.py                    # Main MCP server with FastMCP
+├── kong_client.py               # Kong Admin API HTTP client
+├── tools_config.json            # Tool configuration and metadata
+└── tools/                       # Modular tool implementations
+    ├── basic.py                 # Basic utility tools
+    ├── kong_services.py         # Service management
+    ├── kong_routes.py           # Route management
+    ├── kong_plugins.py          # Plugin management
+    └── kong_rate_limiting.py    # Rate limiting operations
+```
+
+### Design Principles
+- **Modularity**: Each tool category in separate module
+- **Extensibility**: Easy to add new tools via JSON configuration
+- **Type Safety**: Full type hints and validation
+- **Error Handling**: Comprehensive error messages and recovery
+- **Testing**: High test coverage with mocks and live tests
+
+## 🧪 Testing
+
+### Run Tests
 ```bash
-# Set Kong Admin credentials
-export KONG_ADMIN_URL=http://localhost:8001
-export KONG_USERNAME=admin
-export KONG_PASSWORD=your-password
+# All tests with coverage
+pytest --cov=kong_mcp_server --cov-report=term-missing
+
+# Specific test suite
+pytest tests/test_tools_kong_rate_limiting.py -v
+
+# Integration tests (requires Kong instance)
+RUN_LIVE_TESTS=true pytest tests/test_kong_integration.py
 ```
 
-### Kong Enterprise Edition (API Token)
+### Test Coverage
+The project maintains high test coverage across all modules:
+- Unit tests for all tools
+- Integration tests with Kong
+- HTTP client authentication tests
+- Error handling and edge cases
 
+## 🛠️ Development
+
+### Adding New Tools
+
+1. **Create tool module** in `src/kong_mcp_server/tools/`
+```python
+async def my_new_tool(param1: str, param2: int) -> dict:
+    """Tool description for AI."""
+    # Implementation
+    return {"result": "success"}
+```
+
+2. **Add to tools_config.json**
+```json
+{
+  "tools": {
+    "my_new_tool": {
+      "name": "my_new_tool",
+      "description": "Description for AI agent",
+      "module": "kong_mcp_server.tools.my_module",
+      "function": "my_new_tool",
+      "enabled": true
+    }
+  }
+}
+```
+
+3. **Add tests** in `tests/`
+
+4. **Restart server** - Changes are picked up automatically
+
+### Code Quality
 ```bash
-# Set Kong Admin API token
-export KONG_ADMIN_URL=http://localhost:8001
-export KONG_API_TOKEN=your-api-token
+# Linting
+flake8 src/ tests/
+
+# Type checking
+mypy src/
+
+# Formatting
+black src/ tests/
+isort src/ tests/
 ```
 
-### Additional Configuration Options
+## 📖 Usage Examples
 
+### Example 1: Create Service and Route
+```python
+# Through AI agent conversation:
+"Create a service named 'users-api' pointing to https://api.example.com/users,
+then add a route for path /users"
+
+# MCP Server executes:
+# 1. kong_create_service with URL and name
+# 2. kong_create_route with path and service reference
+```
+
+### Example 2: Configure Rate Limiting
+```python
+# Through AI agent:
+"Add rate limiting to the payments service - allow 100 requests per minute per consumer"
+
+# MCP Server executes:
+# kong_create_rate_limiting_plugin with:
+# - service_id: <payments-service-id>
+# - config.minute: 100
+# - config.policy: "local"
+```
+
+### Example 3: Troubleshoot Configuration
+```python
+# Through AI agent:
+"Show me all plugins on the api-gateway service"
+
+# MCP Server executes:
+# kong_get_plugins_by_service with service_id filtering
+```
+
+## 🐳 Docker Deployment
+
+### Using Docker Hub Image
 ```bash
-# Request timeout in seconds (default: 30.0)
-export KONG_TIMEOUT=45.0
+# Basic deployment
+docker run --network host \
+  shibbirmcc/kong-ratelimiter-mcp-server
 
-# SSL certificate verification (default: true)
-export KONG_VERIFY_SSL=false
-```
-
-## Environment Variables
-
-Configure the server behavior using environment variables:
-
-### Kong Configuration
-
-```bash
-# Kong Admin API URL (default: http://localhost:8001)
-export KONG_ADMIN_URL=http://your-kong-instance:8001
-
-# Kong Community Edition authentication
-export KONG_USERNAME=admin
-export KONG_PASSWORD=your-password
-
-# Kong Enterprise Edition authentication (alternative to username/password)
-export KONG_API_TOKEN=your-api-token
-
-# Request timeout in seconds (default: 30.0)
-export KONG_TIMEOUT=45.0
-
-# SSL certificate verification (default: true)
-export KONG_VERIFY_SSL=false
-```
-
-### Server Configuration
-
-```bash
-# Server port (default: 8080)
-export FASTMCP_PORT=8080
-
-# Server host (default: 127.0.0.1)
-export HOST=0.0.0.0
-```
-
-### Changing the Default Port
-
-The server uses port 8080 by default. You can change this in several ways:
-
-#### Method 1: Environment Variable
-```bash
-# Set custom port
-export FASTMCP_PORT=9000
-python -m kong_mcp_server.server
-```
-
-#### Method 2: Docker Run
-```bash
-# Map to a different host port (container still uses 8080)
-docker run -p 9000:8080 kong-mcp-server
-
-# Or change both host and container port
-docker run -p 9000:9000 -e FASTMCP_PORT=9000 kong-mcp-server
-```
-
-#### Method 3: Docker Compose
-```yaml
-version: '3.8'
-services:
-  kong-mcp-server:
-    build: .
-    ports:
-      - "9000:8080"  # Host port 9000, container port 8080
-    environment:
-      - FASTMCP_PORT=8080    # Keep container port as 8080
-```
-
-#### Method 4: Server Management Script
-```bash
-# Set port via environment variable
-FASTMCP_PORT=9000 ./scripts/server.sh start
-```
-
-## Running with Different Configurations
-
-### Local Python with Environment Variables
-
-Create a `.env` file in the project root:
-
-```env
-KONG_ADMIN_URL=http://localhost:8001
-KONG_USERNAME=admin
-KONG_PASSWORD=secret
-KONG_TIMEOUT=30.0
-KONG_VERIFY_SSL=true
-```
-
-Then run:
-
-```bash
-# Load environment variables and run
-python -m kong_mcp_server.server
-```
-
-### Docker with Environment Variables
-
-```bash
-# Run with Kong Community Edition authentication
-docker run -p 8080:8080 \
-  -e KONG_ADMIN_URL=http://kong:8001 \
+# With Kong authentication
+docker run --network host \
+  -e KONG_ADMIN_URL=http://localhost:8001 \
   -e KONG_USERNAME=admin \
   -e KONG_PASSWORD=secret \
-  kong-mcp-server
+  shibbirmcc/kong-ratelimiter-mcp-server
 
-# Run with Kong Enterprise Edition authentication
-docker run -p 8080:8080 \
-  -e KONG_ADMIN_URL=http://kong:8001 \
-  -e KONG_API_TOKEN=your-api-token \
-  kong-mcp-server
+# Custom port
+docker run --network host \
+  -e FASTMCP_PORT=9000 \
+  -e KONG_ADMIN_URL=http://localhost:8001 \
+  shibbirmcc/kong-ratelimiter-mcp-server
 ```
 
-### Docker Compose with Environment File
+### Building Locally
+```bash
+# Build image
+docker build -t kong-mcp-server .
 
-Create a `.env` file:
-
-```env
-KONG_ADMIN_URL=http://kong:8001
-KONG_USERNAME=admin
-KONG_PASSWORD=secret
+# Run
+docker run --network host kong-mcp-server
 ```
 
-Update `docker-compose.yml`:
-
-```yaml
-version: '3.8'
-services:
-  kong-mcp-server:
-    build: .
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
-    restart: unless-stopped
-```
-
-### Custom Tool Configuration
-
-Enable/disable tools by modifying `tools_config.json`:
+## 🔍 Testing with MCP Inspector
 
 ```bash
-# Enable Kong services management
-# Set "enabled": true for kong_get_services, kong_create_service, etc.
-
-# Restart the server after configuration changes
-docker restart kong-mcp
-```
-
-## Testing with MCP Inspector
-
-### Installation
-
-```bash
-# Install MCP Inspector globally
+# Install MCP Inspector
 npm install -g @modelcontextprotocol/inspector
-```
 
-### Testing the Server
-```bash
-# Start the Kong MCP server
+# Start server
 python -m kong_mcp_server.server
 
-# In a new terminal, test with MCP Inspector using SSE transport
+# Test with inspector (new terminal)
 mcp-inspector --transport sse --server-url http://localhost:8080/sse
-
-# Alternative: Test with HTTP transport (for JSON-RPC requests)
-mcp-inspector --transport http --server-url http://localhost:8080/sse/request
 ```
 
-### Manual Testing with cURL
-
-You can also test the server endpoints manually:
-
+### Manual API Testing
 ```bash
-# Test API discovery
-curl -X GET http://localhost:8080/api
-
 # Test tools/list endpoint
 curl -X POST http://localhost:8080/sse/request \
   -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0", "id": "test", "method": "tools/list"}'
+  -d '{"jsonrpc": "2.0", "id": "1", "method": "tools/list"}'
 
-# Test tool execution (example: get Kong routes)
+# Test tool execution
 curl -X POST http://localhost:8080/sse/request \
   -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0", "id": "test", "method": "tools/call", "params": {"name": "kong_get_routes", "arguments": {}}}'
+  -d '{
+    "jsonrpc": "2.0",
+    "id": "2",
+    "method": "tools/call",
+    "params": {
+      "name": "kong_get_services",
+      "arguments": {}
+    }
+  }'
 ```
 
-### Web Interface
+## 🤝 Contributing
 
-The MCP Inspector provides a web interface for interactive testing:
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Submit a pull request
 
-1. Run `mcp-inspector --transport sse --server-url http://localhost:8080/sse`
-2. Open the browser URL displayed in the terminal
-3. Use the web interface to:
-   - View all available tools
-   - Inspect tool schemas
-   - Execute tools with custom parameters
-   - Debug responses in real-time
+## 📄 License
 
-## License
+Apache 2.0 License - see [LICENSE](LICENSE) file for details
 
-Apache 2.0
+## 🙏 Acknowledgments
+
+- Built with [FastMCP](https://github.com/jlowin/fastmcp) framework
+- Designed for [Model Context Protocol](https://modelcontextprotocol.io/)
+- Integrates with [Kong API Gateway](https://konghq.com/)
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/issues)
+- **Documentation**: [Project Wiki](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/wiki)
+- **Discussions**: [GitHub Discussions](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/discussions)
+
+---
+
+**Made with ❤️ for the API Gateway and AI community**
