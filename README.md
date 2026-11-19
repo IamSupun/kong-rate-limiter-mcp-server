@@ -1,12 +1,53 @@
-# Kong Rate Limiter MCP Server
+<div align="center">
 
-[![Build Status](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/workflows/CI/badge.svg)](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/actions)
-[![Coverage](https://codecov.io/gh/ChathuRaaksha/kong-rate-limiter-mcp-server/branch/master/graph/badge.svg)](https://codecov.io/gh/ChathuRaaksha/kong-rate-limiter-mcp-server)
-[![Release](https://img.shields.io/github/v/release/ChathuRaaksha/kong-rate-limiter-mcp-server)](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/releases)
+<img src="assets/banner.svg" alt="Kong Rate Limiter MCP: manage Kong API Gateway in plain English from any AI agent" width="100%"/>
+
+<br/>
+
+[![🥇 1st place](https://img.shields.io/badge/🥇_1st_place-Kong_×_KTH_AI_Hackathon-facc15?style=for-the-badge&labelColor=0b0820)](https://supunchathuranga.se/)
+[![MCP](https://img.shields.io/badge/MCP-server-c084fc?style=for-the-badge&logo=modelcontextprotocol&logoColor=white&labelColor=0b0820)](https://modelcontextprotocol.io)
+[![Kong](https://img.shields.io/badge/Kong-Gateway-22d3ee?style=for-the-badge&logo=kong&logoColor=white&labelColor=0b0820)](https://konghq.com)
+
+[![CI](https://github.com/IamSupun/kong-rate-limiter-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/IamSupun/kong-rate-limiter-mcp-server/actions)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/IamSupun/kong-rate-limiter-mcp-server?style=social)](https://github.com/IamSupun/kong-rate-limiter-mcp-server/stargazers)
 
-A **Model Context Protocol (MCP) server** that enables AI agents and LLMs to interact with Kong API Gateway through natural language. This server bridges the gap between conversational AI and Kong's powerful API management capabilities, allowing for intelligent automation of API gateway configuration and management.
+**Tell your AI agent _"rate-limit /payments to 100 requests a minute"_ and it's done.**<br/>
+A **Model Context Protocol (MCP) server** with **17 tools** that lets Claude, Cline or any MCP client manage Kong services, routes, plugins and rate limits through natural language.
+
+[**Quick start**](#-60-second-quick-start) · [**Demo**](#-see-it-in-action) · [**Tools**](#-available-tools) · [**Architecture**](#️-architecture)
+
+</div>
+
+---
+
+## 🎬 See it in action
+
+<div align="center">
+<img src="assets/demo.svg" alt="Animated demo: an AI agent creates a Kong service, route and rate-limiting plugin through the MCP server" width="100%"/>
+</div>
+
+## ⚡ 60-second quick start
+
+```bash
+git clone https://github.com/IamSupun/kong-rate-limiter-mcp-server.git
+cd kong-rate-limiter-mcp-server && ./venv.sh
+export KONG_ADMIN_URL=http://localhost:8001
+python -m kong_mcp_server.server        # serves MCP over SSE on :8080
+```
+
+Then point your MCP client at it, for example in Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "kong-rate-limiter": { "type": "sse", "url": "http://localhost:8080/sse" }
+  }
+}
+```
+
+> ⭐ **If this saves you a trip to the Kong Admin API docs, a star helps others find it.**
 
 ## 🎯 Why This Project?
 
@@ -81,7 +122,7 @@ AI Agent: Identifies public services and applies CORS plugin configuration
 - **Comprehensive Testing**: High test coverage with unit and integration tests
 - **Extensive Documentation**: Clear guides and examples
 
-## 🚀 Quick Start
+## 🚀 Installation options
 
 ### Prerequisites
 - Python 3.10 or higher
@@ -94,7 +135,7 @@ AI Agent: Identifies public services and applies CORS plugin configuration
 #### Option 1: Virtual Environment (Recommended for Development)
 ```bash
 # Clone the repository
-git clone https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server.git
+git clone https://github.com/IamSupun/kong-rate-limiter-mcp-server.git
 cd kong-rate-limiter-mcp-server
 
 # Setup and activate virtual environment
@@ -424,10 +465,20 @@ Apache 2.0 License - see [LICENSE](LICENSE) file for details
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/issues)
-- **Documentation**: [Project Wiki](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/wiki)
-- **Discussions**: [GitHub Discussions](https://github.com/ChathuRaaksha/kong-rate-limiter-mcp-server/discussions)
+- **Issues**: [GitHub Issues](https://github.com/IamSupun/kong-rate-limiter-mcp-server/issues)
+- **Documentation**: [Project Wiki](https://github.com/IamSupun/kong-rate-limiter-mcp-server/wiki)
+- **Discussions**: [GitHub Discussions](https://github.com/IamSupun/kong-rate-limiter-mcp-server/discussions)
 
 ---
 
 **Made with ❤️ for the API Gateway and AI community**
+
+---
+
+<div align="center">
+
+**Built by [Supun Chathuranga](https://github.com/IamSupun)** · [Website](https://supunchathuranga.se/) · [LinkedIn](https://www.linkedin.com/in/supunchathuranga-ai/) · [Blog](https://blog.supunchathuranga.se/)
+
+⭐ Star the repo if you find it useful. Issues and PRs are welcome!
+
+</div>
