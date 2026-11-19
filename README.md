@@ -477,7 +477,8 @@ Apache 2.0 License - see [LICENSE](LICENSE) file for details
 
 <div align="center">
 
-**Built by [Supun Chathuranga](https://github.com/IamSupun)** · [Website](https://supunchathuranga.se/) · [LinkedIn](https://www.linkedin.com/in/supunchathuranga-ai/) · [Blog](https://blog.supunchathuranga.se/)
+**Built by [Supun Chathuranga](https://github.com/IamSupun), [Shibbir Ahmed](https://github.com/shibbirmcc) and [Mohamad Bahmani](https://github.com/Mohamad-Bahmani)**<br/>
+<sub>Supun: [Website](https://supunchathuranga.se/) · [LinkedIn](https://www.linkedin.com/in/supunchathuranga-ai/) · [Blog](https://blog.supunchathuranga.se/)</sub>
 
 ⭐ Star the repo if you find it useful. Issues and PRs are welcome!
 
